@@ -20,16 +20,16 @@ class Attack(Attacks):
         self._ar45_slider = btws.Bitwise(self._slider).acw45
 
     def bpawn_right(self):
-        return (self._slider >> 7 & const.notafile)
+        return self._slider >> 7 & const.notafile
 
     def bpawn_left(self):
-            return (self._slider >> 9 & const.nothfile)
+            return self._slider >> 9 & const.nothfile
                      
     def wpawn_left(self):
-            return (self._slider << 7 & const.nothfile)
+            return self._slider << 7 & const.nothfile
         
     def wpawn_right(self):
-                return (self._slider << 9 & const.notafile)
+                return self._slider << 9 & const.notafile
           
     def one_east(self):
         return self._slider << 1 & const.notafile
@@ -91,14 +91,14 @@ class Attack(Attacks):
         self._r45_occupied = btws.Bitwise(occupied).acw45()
         self._r45_slid = btws.Bitwise(self._slider).acw45()
         self._ro_attack = self.attack_horizontal(self._r45_occupied,
-                                                                                 self._r45_slid)
+                                                 self._r45_slid)
         return btws.Bitwise(self._ro_attack).cw45()
 
     def attack_diag(self, occupied):
         self._r135_occupied = btws.Bitwise(occupied).cw135()
         self._r135_slid = btws.Bitwise(self._slider).cw135()
         self._ro_attack = self.attack_horizontal(self._r135_occupied,
-                                                                                 self._r135_slid)
+                                                 self._r135_slid)
         return btws.Bitwise(self._ro_attack).acw135()
     
     def mask_adiag(self):
