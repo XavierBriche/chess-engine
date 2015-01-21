@@ -18,8 +18,8 @@ class ChessBoard(FICS):
             self.square_size = 90
             self.font_size = self.square_size+2
             self.chessboard = Canvas(self.root,
-                                                       width=self.square_size*8,
-                                                       height=self.square_size*8)
+                                     width=self.square_size*8,
+                                     height=self.square_size*8)
             self.update_chessboard(self._data) # Draw the chessboard
             self.chessboard.pack()
             self.board_exist = True
@@ -45,12 +45,12 @@ class ChessBoard(FICS):
                         pieces = pieces+y
             # Create the master data list
             square = list(
-                                    [(7*self.square_size-x[1]*self.square_size,
-                                    y[1]*self.square_size,
-                                    x[0]+y[0],
-                                    pieces[(y[1]*8)+x[1]],)
-                                    for y in rank_board for x in file_board]
-                                    )
+                           [(7*self.square_size-x[1]*self.square_size,
+                            y[1]*self.square_size,
+                            x[0]+y[0],
+                            pieces[(y[1]*8)+x[1]],)
+                            for y in rank_board for x in file_board]
+                         )
             self.chessboard.delete(ALL)
             for x in square:
                     self.output = self.chessboard.create_text(x[0]+self.square_size/2,
@@ -63,6 +63,8 @@ class ChessBoard(FICS):
             return
 
         def show_bb(self, data):
+        ''' Dev version shows a bitboard when testing.'''
+        
                 if data.type is not str:
                         result= np.binary_repr(data, 68)[::-1]
                 else:
